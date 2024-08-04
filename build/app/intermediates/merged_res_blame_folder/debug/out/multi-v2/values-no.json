@@ -1,0 +1,77 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ateam.map.app-mergeDebugResources-34:/values-no/values-no.xml",
+            "map": [
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-3/eb4db207fc59b9022f5062d143b66f81/transformed/jetified-android-11.5.0/res/values-no/values-no.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,132,209",
+                        "endColumns": "76,76,69",
+                        "endOffsets": "127,204,274"
+                    },
+                    "to": {
+                        "startLines": "10,11,12",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "855,932,1009",
+                        "endColumns": "76,76,69",
+                        "endOffsets": "927,1004,1074"
+                    }
+                },
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-3/ffd9bb37bec32512cd82ca8d2e746899/transformed/jetified-maps-compass-11.5.0/res/values-no/values-no.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "127",
+                        "endOffsets": "178"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "727",
+                        "endColumns": "127",
+                        "endOffsets": "850"
+                    }
+                },
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-3/903b9f11c8533116de0d80ff0c323190/transformed/jetified-maps-attribution-11.5.0/res/values-no/values-no.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,180,335,413,492,562,646,727",
+                        "endColumns": "124,154,77,78,69,83,80,221",
+                        "endOffsets": "175,330,408,487,557,641,722,944"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,13",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,180,335,413,492,562,646,1079",
+                        "endColumns": "124,154,77,78,69,83,80,221",
+                        "endOffsets": "175,330,408,487,557,641,722,1296"
+                    }
+                },
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-3/70d737e0a3ef8b4f8865b6a2458c308a/transformed/jetified-maps-logo-11.5.0/res/values-no/values-no.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "192",
+                        "endOffsets": "243"
+                    },
+                    "to": {
+                        "startLines": "14",
+                        "startColumns": "4",
+                        "startOffsets": "1301",
+                        "endColumns": "192",
+                        "endOffsets": "1489"
+                    }
+                }
+            ]
+        }
+    ]
+}
