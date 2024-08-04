@@ -1,17 +1,34 @@
-
-import 'package:ateam_map/apputil/app_util.dart';
-import 'package:ateam_map/models/map_search_res.dart';
-import 'package:ateam_map/repository/api_repo.dart';
+import 'package:ateam_test/apputil/app_util.dart';
+import 'package:ateam_test/models/map_search_res.dart';
+import 'package:ateam_test/repository/api_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:geotypes/src/geojson.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' as map;
+import 'package:geolocator/geolocator.dart' as geo;
+
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MapVM extends ChangeNotifier {
-  map.MapboxMap? mapboxMap;
+////
+  ///
 
-  onMapCreated(map.MapboxMap mapboxMap) {
+  MapboxMap? mapboxMap;
+
+  onMapCreated(MapboxMap mapboxMap) {
     this.mapboxMap = mapboxMap;
+  }
+
+  geo.Position? _locationData;
+
+  geo.Position? get currentLocation => _locationData;
+
+  Future<void> getCurrentLocation() async {
+    geo.Position position = await geo.Geolocator.getCurrentPosition(
+        desiredAccuracy: geo.LocationAccuracy.high);
+
+    _locationData = position;
+
+    notifyListeners();
   }
 
 //SETTING LOCATION AND LATLONG
@@ -23,22 +40,19 @@ class MapVM extends ChangeNotifier {
   String? get mapTripStartLocation => _mapTripStartLocation;
   Position? _startLatLong = Position(0, 0);
   Position? get startLatlong => _startLatLong;
+
   setmapTripStartLocation(String location, Position latLong) {
     startLocation.text = location;
     _mapTripStartLocation = location;
     _startLatLong = Position(latLong.lng, latLong.lat);
-
-    mapboxMap?.coordinateBoundsForCamera(map.CameraOptions(
-        center: map.Point(
-            coordinates: Position(
-          latLong.lng,
-          latLong.lng,
-        )),
-        padding: map.MbxEdgeInsets(top: 1, left: 2, bottom: 3, right: 4),
-        anchor: map.ScreenCoordinate(x: 1, y: 1),
-        zoom: 10,
-        bearing: 20,
-        pitch: 30));
+    Log.print("starttt-----");
+    mapboxMap?.flyTo(
+        CameraOptions(
+            center: Point(coordinates: _startLatLong!),
+            zoom: 17,
+            bearing: 180,
+            pitch: 30),
+        MapAnimationOptions(duration: 2000, startDelay: 0));
 
     notifyListeners();
   }
@@ -52,7 +66,14 @@ class MapVM extends ChangeNotifier {
     endLocation.text = location;
     _mapTripEndLocation = location;
     _endLatLong = Position(latLong.lng, latLong.lat);
-    Log.print(endLocation.text, other: "");
+    Log.print("endd-----");
+    mapboxMap?.flyTo(
+        CameraOptions(
+            center: Point(coordinates: _endLatLong!),
+            zoom: 17,
+            bearing: 180,
+            pitch: 30),
+        MapAnimationOptions(duration: 2000, startDelay: 0));
     notifyListeners();
   }
 
@@ -77,5 +98,9 @@ class MapVM extends ChangeNotifier {
       }
       return [];
     }
+  }
+
+  cleardata(type) {
+    type == "start" ? startLocation.clear() : endLocation.clear();
   }
 }

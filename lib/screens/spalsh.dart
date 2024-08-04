@@ -1,8 +1,9 @@
-import 'package:ateam_map/apputil/app_util.dart';
-import 'package:ateam_map/screens/home/home_page.dart';
-
+import 'package:ateam_test/apputil/app_util.dart';
+import 'package:ateam_test/screens/home/home_page.dart';
+import 'package:ateam_test/view_model/map_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 
 class SpalshScreen extends StatelessWidget {
   const SpalshScreen({super.key});
@@ -30,13 +31,20 @@ class SpalshScreen extends StatelessWidget {
         //       }
         //     });
       } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Provider.of<MapVM>(context, listen: false)
+            .getCurrentLocation()
+            .whenComplete(() {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        });
       }
     });
     return const Scaffold(
+      backgroundColor: Colors.blue,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: Colors.red,
+        ),
       ),
     );
   }
